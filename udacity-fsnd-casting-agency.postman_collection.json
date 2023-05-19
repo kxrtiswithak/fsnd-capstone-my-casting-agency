@@ -1,0 +1,1311 @@
+{
+	"info": {
+		"_postman_id": "27ad7c52-7c17-4cd2-af3f-d5b548f9e950",
+		"name": "udacity-fsnd-casting-agency",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15782361"
+	},
+	"item": [
+		{
+			"name": "casting assistant",
+			"item": [
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"response contains actors array\", function () {",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"actor_id\", jsonData.actors[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains movies array\", function () {",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"movie_id\", jsonData.movies[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains actor object\", function () {",
+									"    pm.expect(jsonData.actor).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains dob object in actor\"), function () {",
+									"    pm.expect(jsonData.actor).to.have.property('dob');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains name object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('name');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains gender object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('gender');",
+									"    pm.expect(jsonData.actor.gender).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains movies array\", function () {",
+									"    pm.expect(jsonData.actor.movies).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/{{movie_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"reponse contains movie object\", function () {",
+									"    pm.expect(jsonData).to.have.property('movie');",
+									"    pm.expect(jsonData.movie).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains release_date object in movie\"), function () {",
+									"    pm.expect(jsonData.movie).to.have.property('release_date');",
+									"    pm.expect(jsonData.movie.release_date).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains title object in movie\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('title');",
+									"    pm.expect(jsonData.movie.title).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"reponse contains actors array in movie object\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('actors');",
+									"    pm.expect(jsonData.movie.actors).to.be.an('array');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/{{movie_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlZ6LWNXYmEtb2lvZ0UyVnZ1Q2hTYSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQudWsuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0NGI5OTBiNGFjMzc5OTgyZDQzZTA5ZSIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE2ODI2OTEwNTMsImV4cCI6MTY4NTI4MzA1MywiYXpwIjoiOTZCV0l3ZVE2Q005c3NBcTFicmNGUmVMTFJJNllKM2kiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3IiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllIiwiZ2V0Om1vdmllcyJdfQ.NkBPQqDAjReQVBVpch4W9ciluEjsTjwyXiwIVHPaMKVknGrXNHpPizJHJo6QNAWxIhsNjZ-re6El3pq-PTq1gqxfkZtepyMMYWz_9DNokAz_d2VLR09lWuT4XICWsqTYdgSu3FNyANeklHbHgmaO3WoMGqCk59PO3DCZcVE6WuhiTn-h-YRKhjtzhiGllJdcH4v0-vWwafymBYnm9VTJCtMnPjRfsuSdNhsKEq4njizDCYtR8tFr6y-Bwmupjc1asZwgdqq55376TazZdq9YryqvtvAkozkMQ2h0XVQFYz06yZnTJ_fofy9BKeu7lyZEOAmOkspiuekXpKtHQhXsPg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "casting director",
+			"item": [
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains actors array\", function () {",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"actor_id\", jsonData.actors[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains movies array\", function () {",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"movie_id\", jsonData.movies[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains actor object\", function () {",
+									"    pm.expect(jsonData.actor).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains dob object in actor\"), function () {",
+									"    pm.expect(jsonData.actor).to.have.property('dob');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains name object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('name');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains gender object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('gender');",
+									"    pm.expect(jsonData.actor.gender).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains movies array\", function () {",
+									"    pm.expect(jsonData.actor.movies).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/{{movie_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"reponse contains movie object\", function () {",
+									"    pm.expect(jsonData).to.have.property('movie');",
+									"    pm.expect(jsonData.movie).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains release_date object in movie\"), function () {",
+									"    pm.expect(jsonData.movie).to.have.property('release_date');",
+									"    pm.expect(jsonData.movie.release_date).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains title object in movie\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('title');",
+									"    pm.expect(jsonData.movie.title).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"reponse contains actors array in movie object\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('actors');",
+									"    pm.expect(jsonData.movie.actors).to.be.an('array');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/{{movie_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"actor_id\", jsonData.actor_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shailene Woodley\",\n    \"dob\": \"15-11-1991\",\n    \"gender\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"response contains actor object\", function () {",
+									"    pm.expect(jsonData.actor).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains dob object in actor\"), function () {",
+									"    pm.expect(jsonData.actor).to.have.property('dob');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains name object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('name');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"actor name is 'Charlinha Brickley'\", function () {",
+									"    pm.expect(jsonData.actor.name).to.equal('Charlinha Brickley');",
+									"});",
+									"",
+									"",
+									"pm.test(\"response contains gender object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('gender');",
+									"    pm.expect(jsonData.actor.gender).to.be.an('string');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Charlinha Brickley\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/{{movie_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains movie object\", function () {",
+									"    pm.expect(jsonData.movie).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains movie object\", function () {",
+									"    pm.expect(jsonData.movie).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains release_date object in movie\"), function () {",
+									"    pm.expect(jsonData.movie).to.have.property('release_date');",
+									"    pm.expect(jsonData.movie.release_date).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains title object in movie\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('title');",
+									"    pm.expect(jsonData.movie.title).to.be.an('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"movie release_date is 'April 25, 1962'\", function () {",
+									"    pm.expect(jsonData.movie.release_date).to.equal('April 25, 1962');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"release_date\": \"25-04-1962\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{movie_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"response contains actor_id\", function () {",
+									"    pm.expect(jsonData).to.have.property('actor_id');",
+									"    pm.expect(jsonData.actor_id).to.be.an('number');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlZ6LWNXYmEtb2lvZ0UyVnZ1Q2hTYSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQudWsuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0NGI5ZjZkNDFjODJjZjc3Y2I0YmIwOSIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE2ODI2OTQwNTUsImV4cCI6MTY4NTI4NjA1NSwiYXpwIjoiOTZCV0l3ZVE2Q005c3NBcTFicmNGUmVMTFJJNllKM2kiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9yIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZSIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.JGOF4N9YmgXJIDX6wjzPRlnBg8avZZ-4HiRNsYB6lFYOj1tCUmGutk23swVCo0PxhufmxKl0zjDk_Dxi6_JeY4pf0FBg1PLPq7nfkx2rSEGoameBylv0go8swBcL7n4HQqNxEvlUrTB2LjOPFtV7QFVebt2nmGnt5wjymSvQRS_hYi1sb_-4al8jp-fdRYUE_lb-aQZ9ZixAuU1Vd9FA4orzU391Qb5VDgj1ulGPtduMr8Mn8TWyGGf9WoxC_6ZLKwRBNIp0TuScy1Ev7bfaLBXVtD0U91FUI4lNJxjR7b8FDZ4zwaugx6MAFusrWnhMBNKOMolxMzCsR5xDmnC98A",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "executive producer",
+			"item": [
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains actors array\", function () {",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"actor_id\", jsonData.actors[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains movies array\", function () {",
+									"    pm.expect(jsonData.movies).to.be.an('array')",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"movie_id\", jsonData.movies[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains actor object\", function () {",
+									"    pm.expect(jsonData.actor).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains dob object in actor\"), function () {",
+									"    pm.expect(jsonData.actor).to.have.property('dob');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains name object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('name');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains gender object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('gender');",
+									"    pm.expect(jsonData.actor.gender).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains movies array\", function () {",
+									"    pm.expect(jsonData.actor.movies).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/{{movie_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"reponse contains movie object\", function () {",
+									"    pm.expect(jsonData).to.have.property('movie');",
+									"    pm.expect(jsonData.movie).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains release_date object in movie\"), function () {",
+									"    pm.expect(jsonData.movie).to.have.property('release_date');",
+									"    pm.expect(jsonData.movie.release_date).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains title object in movie\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('title');",
+									"    pm.expect(jsonData.movie.title).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"reponse contains actors array in movie object\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('actors');",
+									"    pm.expect(jsonData.movie.actors).to.be.an('array');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/{{movie_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"postman.setEnvironmentVariable(\"actor_id\", jsonData.actor_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shailene Woodley\",\n    \"dob\": \"15-11-1991\",\n    \"gender\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"movie_id is a number\", function () {",
+									"    pm.expect(jsonData.movie_id).to.be.an('number');",
+									"});",
+									"",
+									"",
+									"postman.setEnvironmentVariable(\"movie_id\", jsonData.movie_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"The Fault In Our Stars\",\n    \"release_date\": \"16-06-2014\",\n    \"actors\": [\n        \"Shailene Woodley\"\n    ] \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"response contains actor object\", function () {",
+									"    pm.expect(jsonData.actor).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains dob object in actor\"), function () {",
+									"    pm.expect(jsonData.actor).to.have.property('dob');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains name object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('name');",
+									"    pm.expect(jsonData.actor.dob).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"response contains gender object in actor\", function () {",
+									"    pm.expect(jsonData.actor).to.have.property('gender');",
+									"    pm.expect(jsonData.actor.gender).to.be.an('string');",
+									"});",
+									"",
+									"pm.test(\"actor gender is '?'\", function () {",
+									"    pm.expect(jsonData.actor.gender).to.equal('?');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"gender\": \"?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/{{movie_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"value contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"value contains movie object\", function () {",
+									"    pm.expect(jsonData.movie).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"response contains release_date object in movie\"), function () {",
+									"    pm.expect(jsonData.movie).to.have.property('release_date');",
+									"    pm.expect(jsonData.movie.release_date).to.be.an('string');",
+									"}",
+									"",
+									"pm.test(\"response contains title object in movie\", function () {",
+									"    pm.expect(jsonData.movie).to.have.property('title');",
+									"    pm.expect(jsonData.movie.title).to.be.an('string');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actors\": [\n        \"Ansel Egort\",\n        \"Shailene Woodley\",\n        \"Daniel Radcliffe\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/{{movie_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/{{actor_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"response contains actor_id\", function () {",
+									"    pm.expect(jsonData).to.have.property('actor_id');",
+									"    pm.expect(jsonData.actor_id).to.be.an('number');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/{{actor_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								"{{actor_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/{{movie_id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response contains true success\", function () {",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"response contains movie_id\", function () {",
+									"    pm.expect(jsonData).to.have.property('movie_id');",
+									"    pm.expect(jsonData.movie_id).to.be.an('number');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/{{movie_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								"{{movie_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlZ6LWNXYmEtb2lvZ0UyVnZ1Q2hTYSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQudWsuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0NGI5ZmNiNGFjMzc5OTgyZDQzZTBiOSIsImF1ZCI6ImNhc3RpbmciLCJpYXQiOjE2ODI2OTQxODksImV4cCI6MTY4NTI4NjE4OSwiYXpwIjoiOTZCV0l3ZVE2Q005c3NBcTFicmNGUmVMTFJJNllKM2kiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvciIsImdldDphY3RvcnMiLCJnZXQ6bW92aWUiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.kH5J9PW4UxwYPhIxyvrLdrArtWfDUi0tlPYlslI_V3b0ygrxGZOOAsCoy0F7y865rTX-DwaqSadzkkFvQruPliODioBUvwpucdb02d-PNnSNBAc7OuSxVnJUMAAKVNGu7khqo2wkY36OaKPOUscjXPuJSSw3u8qcAYftfZQZJia9T58KXnyrPBXfJwgvHd7Z6xyq7x3zOTUzxDoAPNJ-2dNIEt97WffRpuUFaYwHZrzMRTJt5dgoDpuZxzf-C9WNsrp0Jw6iLfAFgGC5oEdEN2CAeKTrUp1dgEn3MLiJkqMvmjM9Si3ZSpWfiWN08EtD_zMykQyu9Z7hEhCK4zsZdQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "health check",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}",
+					"host": [
+						"{{host}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}
