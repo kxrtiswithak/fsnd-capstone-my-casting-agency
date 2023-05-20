@@ -2,7 +2,7 @@
 
 ## Links
 
-- Render Link: `<insert link here>`
+- Render Link: [`https://fsnd-capstone-my-casting-agency.onrender.com`](https://fsnd-capstone-my-casting-agency.onrender.com)
 - Runs locally on: [`http://127.0.0.1:5000/`](http://127.0.0.1:5000/)
 
 ## Getting started
@@ -49,7 +49,7 @@ flask run --reload
 
 the [`.flaskenv`](.flaskenv) contains app name and some other run configurations that flask will use, saving you the hassle of setting this up yourself. This file can be modified at your own discretion, [check this out](https://prettyprinted.com/tutorials/automatically_load_environment_variables_in_flask/) if you're curious how.
 
-You can hit the endpoints using the [postman collection provided](udacity-fsnd-casting-agency.postman_collection.json) or using something like curl in the command line.
+You can hit the endpoints using the [postman collection provided](udacity-fsnd-casting-agency.postman_collection.json) or using curl commands found in the sample request [for the endpoints below](#endpoints). You can hit the endpoints [locally](casting%20local.postman_environment.json) or [on render](casting%20render.postman_environment.json) using the respective postman environment files.
 
 ## API Reference
 
@@ -119,7 +119,7 @@ In order to successfully run the sample requests using the environment variables
 ##### Sample Request
 
 ```bash
-curl 'http://localhost:5000'
+curl 'https://fsnd-capstone-my-casting-agency.onrender.com'
 ```
 
 ##### Sample Response
@@ -143,7 +143,7 @@ curl 'http://localhost:5000'
     - `Authorization` - contains JWT with 'Bearer' preceding _(string: required)_
 
 ```bash
-curl --location 'http://localhost:5000/actors' \
+curl --location 'https://fsnd-capstone-my-casting-agency.onrender.com/actors' \
 --header 'Authorization: Bearer '$CASTING_ASSISTANT_TOKEN''
 ```
 
@@ -190,7 +190,7 @@ curl --location 'http://localhost:5000/actors' \
     - `Authorization` - contains JWT with 'Bearer' preceding _(string: required)_
 
 ```bash
-curl --location 'http://localhost:5000/actors/1' \
+curl --location 'https://fsnd-capstone-my-casting-agency.onrender.com/actors/1' \
 --header 'Authorization: Bearer '$CASTING_ASSISTANT_TOKEN''
 ```
 
@@ -234,7 +234,7 @@ curl --location 'http://localhost:5000/actors/1' \
     - `gender` - gender of actor, denoted by one letter being either `M`, `F` or `?` _(string:required)_
 
 ```bash
-curl --location --request POST 'http://localhost:5000/actors' \
+curl --location --request POST 'https://fsnd-capstone-my-casting-agency.onrender.com/actors' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer '$CASTING_DIRECTOR_TOKEN'' \
 --data '{
@@ -274,7 +274,7 @@ curl --location --request POST 'http://localhost:5000/actors' \
 
 
 ```bash
-curl --location --request PATCH 'http://localhost:5000/actors/1' \
+curl --location --request PATCH 'https://fsnd-capstone-my-casting-agency.onrender.com/actors/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer '$CASTING_DIRECTOR_TOKEN'' \
 --data '{
@@ -312,7 +312,7 @@ curl --location --request PATCH 'http://localhost:5000/actors/1' \
     - `Authorization` - contains JWT with 'Bearer' preceding _(string: required)_
 
 ```bash
-curl --location --request DELETE 'http://localhost:5000/actors/1' \
+curl --location --request DELETE 'https://fsnd-capstone-my-casting-agency.onrender.com/actors/1' \
 --header 'Authorization: Bearer '$CASTING_DIRECTOR_TOKEN''
 ```
 
@@ -339,7 +339,7 @@ curl --location --request DELETE 'http://localhost:5000/actors/1' \
     - `Authorization` - contains JWT with 'Bearer' preceding _(string: required)_
 
 ```bash
-curl --location 'http://localhost:5000/movies' \
+curl --location 'https://fsnd-capstone-my-casting-agency.onrender.com/movies' \
 --header 'Authorization: Bearer '$CASTING_ASSISTANT_TOKEN''
 ```
 
@@ -387,7 +387,7 @@ curl --location 'http://localhost:5000/movies' \
 ##### Sample Request
 
 ```bash
-curl --location 'http://localhost:5000/movies/1' \
+curl --location 'https://fsnd-capstone-my-casting-agency.onrender.com/movies/1' \
 --header 'Authorization: Bearer '$CASTING_ASSISTANT_TOKEN''
 ```
 
@@ -430,7 +430,7 @@ curl --location 'http://localhost:5000/movies/1' \
     - `actors `- list of actors in the movie _(list:required)_
 
 ```bash
-curl --location --request POST 'http://localhost:5000/movies' \
+curl --location --request POST 'https://fsnd-capstone-my-casting-agency.onrender.com/movies' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer '$EXECUTIVE_PRODUCER_TOKEN'' \
 --data '{
@@ -471,7 +471,7 @@ curl --location --request POST 'http://localhost:5000/movies' \
     - `actors `- list of actors in the movie _(list:optional)_
 
 ```bash
-curl --location --request PATCH 'http://localhost:5000/movies/1' \
+curl --location --request PATCH 'https://fsnd-capstone-my-casting-agency.onrender.com/movies/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer '$CASTING_DIRECTOR_TOKEN'' \
 --data '{
@@ -508,7 +508,7 @@ curl --location --request PATCH 'http://localhost:5000/movies/1' \
     - `Authorization` - contains JWT with 'Bearer' preceding _(string: required)_
 
 ```bash
-curl --location --request DELETE 'http://localhost:5000/movies/1' \
+curl --location --request DELETE 'https://fsnd-capstone-my-casting-agency.onrender.com/movies/1' \
 --header 'Authorization: Bearer '$EXECUTIVE_PRODUCER_TOKEN''
 ```
 
