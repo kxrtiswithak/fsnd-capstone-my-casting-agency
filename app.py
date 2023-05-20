@@ -12,10 +12,8 @@ from flask_cors import CORS
 from sqlalchemy import exc
 from database.models import *
 from auth.auth import AuthError, requires_auth
-# from forms import *
 from config import *
 from enums import *
-from werkzeug.datastructures import MultiDict
 
 
 def create_app(test_config=None):
@@ -26,8 +24,6 @@ def create_app(test_config=None):
 
     with app.app_context():
         db.init_app(app)
-        # db.drop_all()
-        # db.create_all()
 
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -419,8 +415,8 @@ def create_app(test_config=None):
     return app
 
 
-APP = create_app()
+app = create_app()
 
 
 if __name__ == '__main__':
-    APP.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
